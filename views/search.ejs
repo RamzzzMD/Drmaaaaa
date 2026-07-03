@@ -1,0 +1,22 @@
+<%- include('partials/header') %>
+<div class="container">
+    <h2 class="section-title">Hasil Pencarian: "<%= keyword %>"</h2>
+    <% if (searchResults.length > 0) { %>
+        <div class="grid-container">
+            <% searchResults.forEach(book => { %>
+                <a href="/detail/<%= book.book_id %>" class="card">
+                    <div class="card-img-wrapper">
+                        <img src="<%= book.thumb_url %>" alt="<%= book.book_name %>" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title"><%= book.book_name %></h3>
+                        <p class="card-abstract"><%= book.abstract %></p>
+                    </div>
+                </a>
+            <% }) %>
+        </div>
+    <% } else { %>
+        <p class="empty-state">Tidak ada drama yang ditemukan.</p>
+    <% } %>
+</div>
+<%- include('partials/footer') %>
