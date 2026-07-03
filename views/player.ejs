@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+<div class="player-container">
+    <div class="video-wrapper">
+        <video id="microDramaPlayer" controls autoplay playsinline crossorigin="anonymous"></video>
+    </div>
+    <a href="javascript:history.back()" class="btn-back">⬅ Kembali ke Detail</a>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const base64Url = "<%= videoBase64Url %>";
+        const player = document.getElementById("microDramaPlayer");
+        if (base64Url) {
+            try {
+                player.src = atob(base64Url);
+                player.load();
+            } catch (error) {
+                alert("Gagal mendekode video.");
+            }
+        } else {
+            alert("Video / Episode ini tidak tersedia.");
+        }
+    });
+</script>
+<%- include('partials/footer') %>
