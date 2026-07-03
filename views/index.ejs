@@ -1,22 +1,23 @@
 <%- include('partials/header') %>
-<div class="container">
-    <h2 class="section-title">Baru Dirilis</h2>
-    <div class="grid-container">
-        <% latestBooks.forEach(book => { %>
-            <a href="/detail/<%= book.book_id %>" class="card">
-                <div class="card-img-wrapper">
-                    <img src="<%= book.thumb_url %>" alt="<%= book.book_name %>" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title"><%= book.book_name %></h3>
-                    <p class="card-abstract"><%= book.abstract %></p>
-                </div>
-            </a>
-        <% }) %>
-    </div>
 
-    <h2 class="section-title">Drama Terpopuler (Trending)</h2>
-    <div class="grid-container">
+<% if (trendingBooks.length > 0) { %>
+    <div class="hero-section" style="background-image: url('<%= trendingBooks[0].thumb_url %>');">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <span class="hero-tag">#1 Trending Now</span>
+                <h1 class="hero-title"><%= trendingBooks[0].book_name %></h1>
+                <p class="hero-desc"><%= trendingBooks[0].abstract %></p>
+                <a href="/detail/<%= trendingBooks[0].book_id %>" class="btn-play-glowing">
+                    ▶ TONTON SEKARANG
+                </a>
+            </div>
+        </div>
+    </div>
+<% } %>
+
+<div class="container">
+    <h2 class="section-title">🔥 Trending Now</h2>
+    <div class="carousel-container">
         <% trendingBooks.forEach(book => { %>
             <a href="/detail/<%= book.book_id %>" class="card">
                 <div class="card-img-wrapper">
@@ -24,10 +25,38 @@
                 </div>
                 <div class="card-body">
                     <h3 class="card-title"><%= book.book_name %></h3>
-                    <p class="card-abstract"><%= book.abstract %></p>
+                </div>
+            </a>
+        <% }) %>
+    </div>
+
+    <h2 class="section-title">💼 Billionaire CEO</h2>
+    <div class="carousel-container">
+        <% latestBooks.forEach(book => { %>
+            <a href="/detail/<%= book.book_id %>" class="card">
+                <div class="card-img-wrapper">
+                    <img src="<%= book.thumb_url %>" alt="<%= book.book_name %>" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title"><%= book.book_name %></h3>
+                </div>
+            </a>
+        <% }) %>
+    </div>
+
+    <h2 class="section-title">🔪 Sweet Revenge</h2>
+    <div class="carousel-container">
+        <% [...trendingBooks].reverse().forEach(book => { %>
+            <a href="/detail/<%= book.book_id %>" class="card">
+                <div class="card-img-wrapper">
+                    <img src="<%= book.thumb_url %>" alt="<%= book.book_name %>" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title"><%= book.book_name %></h3>
                 </div>
             </a>
         <% }) %>
     </div>
 </div>
+
 <%- include('partials/footer') %>
