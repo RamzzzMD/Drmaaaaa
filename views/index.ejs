@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+<div class="container">
+    <h2 class="section-title">Baru Dirilis</h2>
+    <div class="grid-container">
+        <% latestBooks.forEach(book => { %>
+            <a href="/detail/<%= book.book_id %>" class="card">
+                <div class="card-img-wrapper">
+                    <img src="<%= book.thumb_url %>" alt="<%= book.book_name %>" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title"><%= book.book_name %></h3>
+                    <p class="card-abstract"><%= book.abstract %></p>
+                </div>
+            </a>
+        <% }) %>
+    </div>
+
+    <h2 class="section-title">Drama Terpopuler (Trending)</h2>
+    <div class="grid-container">
+        <% trendingBooks.forEach(book => { %>
+            <a href="/detail/<%= book.book_id %>" class="card">
+                <div class="card-img-wrapper">
+                    <img src="<%= book.thumb_url %>" alt="<%= book.book_name %>" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title"><%= book.book_name %></h3>
+                    <p class="card-abstract"><%= book.abstract %></p>
+                </div>
+            </a>
+        <% }) %>
+    </div>
+</div>
+<%- include('partials/footer') %>
