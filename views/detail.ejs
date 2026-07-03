@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+<% if (drama && drama.series_title) { %>
+    <div class="detail-header">
+        <img src="<%= drama.video_list[0]?.episode_cover || '' %>" alt="<%= drama.series_title %>" class="detail-poster">
+        <div class="detail-info">
+            <h1 class="detail-title"><%= drama.series_title %></h1>
+            <span class="ep-count"><%= drama.episode_cnt %> Episode Tersedia</span>
+            <p class="detail-intro"><%= drama.series_intro %></p>
+        </div>
+    </div>
+    <div class="container">
+        <h2 class="section-title">Daftar Episode</h2>
+        <div class="ep-grid">
+            <% (drama.video_list || []).forEach(ep => { %>
+                <a href="/play/<%= ep.vid %>" class="ep-card">
+                    <img src="<%= ep.episode_cover %>" alt="Episode <%= ep.vid_index %>" loading="lazy">
+                    <div class="ep-badge">Ep. <%= ep.vid_index %></div>
+                </a>
+            <% }) %>
+        </div>
+    </div>
+<% } else { %>
+    <p class="empty-state">Gagal memuat detail drama atau drama tidak ditemukan.</p>
+<% } %>
+<%- include('partials/footer') %>
